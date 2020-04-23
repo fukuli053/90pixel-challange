@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Mail\ProblemMail;
 use Illuminate\Bus\Queueable;
 use App\Mail\SendMailMailable;
 use Illuminate\Support\Facades\Mail;
@@ -13,15 +14,16 @@ use Illuminate\Foundation\Bus\Dispatchable;
 class SendMail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    private $error;
 
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param $error
      */
-    public function __construct()
+    public function __construct($error = false)
     {
-        //
+        $this->error = $error;
     }
 
     /**
@@ -31,6 +33,10 @@ class SendMail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to("fergun3453@hotmail.com")->send(new SendMailMailable());
+        if ($this->error){
+            Mail::to("buradayim@90pixel.com")->send(new ProblemMail());
+        }else{
+            Mail::to("buradayim@90pixel.com")->send(new SendMailMailable());
+        }
     }
 }

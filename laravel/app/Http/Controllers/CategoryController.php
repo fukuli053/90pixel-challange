@@ -28,9 +28,15 @@ class CategoryController extends Controller
          * Post Oluşturma vb. diğer işlemler
          */
         GetLastFile::dispatch();
-        ImportCategories::dispatch();
-        SendMail::dispatch()
-            ->delay(now()->addSecond(10));
+        if (ImportCategories::dispatch()){
+            SendMail::dispatch()
+                ->delay(now()->addSecond(10));
+        }else{
+            $error = true;
+            SendMail::dispatch($error)
+                ->delay(now()->addSecond(10));
+        }
+
     }
 
     /**

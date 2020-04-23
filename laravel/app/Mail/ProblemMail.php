@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendMailMailable extends Mailable
+class ProblemMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,6 +28,6 @@ class SendMailMailable extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.success');
+        return $this->view('mail.error');
     }
 }
