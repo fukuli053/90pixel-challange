@@ -1,5 +1,7 @@
 # 90Pixel Akademi 2020 - Backend Code Challenge
 
+Not: Projeyi Laradock ile dockerize edildi ama Laradock dosyalarını repostory içine atamadım. Laradock repositorysini laravel klasörünün dışına cloneladıktan sonra Laradock içindeki .env dosyasında `APP_CODE_PATH_HOST=../laravel/` ayarını yapmanız gerekmektedir.
+
 `localhost/category` adresine GET isteği yapıldığında
 
 ![](https://i.imgur.com/NWOq5Gq.png)
